@@ -1,0 +1,28 @@
+---
+- name: install prereqs
+  sudo: yes
+  action: apt pkg="{{item}}" state=present update_cache=yes
+  with_items:
+      - "curl"
+      - "apt-transport-https"
+      - "lsb-release"
+      - "gnupg2"
+  tags: prereqs
+
+- name: add wazuh apt key
+  sudo: yes
+  action: apt_key url=https://packages.wazuh.com/key/GPG-KEY-WAZUH state=present 
+  tags: wazuh
+
+- name: add wazuh repository
+  sudo: yes
+  action: apt_repository repo="deb https://packages.wazuh.com/3.x/apt/ stable main" state=present update_cache=yes 
+  tags: wazuh
+
+- name: install wazuh
+  sudo: yes
+  action: apt pkg="{{item}}" state=present update_cache=yes
+  with_items:
+      - "{{wazuh_package_name}}"
+  tags: wazuh
+

@@ -1,0 +1,14 @@
+---
+galaxy_info:
+  author: Vlatko Kosturjak
+  description: Installs wazuh on ubuntu
+  company: kost
+  license: BSD
+  min_ansible_version: 1.5
+  platforms:
+  - name: Ubuntu
+  - name: Debian
+  categories:
+  - system
+  - packaging
+dependencies: []
